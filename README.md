@@ -18,13 +18,13 @@
    ╚═╝    ╚═════╝       ╚═════╝  ╚═════╝     ╚═╝  ╚═╝╚═╝     ╚═╝
 ```
 
-### ✅ API REST de Lista de Tareas — Spring Boot 3 + Java 21
+###  API REST de Lista de Tareas — Spring Boot 3 + Java 21
 
 </div>
 
 ---
 
-## 📸 Vista previa
+##  Vista previa
 
 ```
 ╔══════════════════════════════════════════════════════╗
@@ -46,7 +46,7 @@ Base URL: http://localhost:8080
 
 ---
 
-## ✨ Características
+##  Características
 
 | Endpoint | Descripción |
 |----------|-------------|
@@ -60,7 +60,7 @@ Base URL: http://localhost:8080
 
 ---
 
-## 🚀 Instalación
+##  Instalación
 
 ### Opción 1 — Clonar y ejecutar directamente
 
@@ -90,7 +90,7 @@ mvn test
 
 ---
 
-## 💻 Ejemplos de uso
+##  Ejemplos de uso
 
 ```bash
 # Crear una tarea
@@ -121,7 +121,7 @@ curl -X DELETE http://localhost:8080/api/tasks/1
 
 ---
 
-## 📦 Estructura del modelo `Task`
+##  Estructura del modelo `Task`
 
 Cada tarea tiene los siguientes campos:
 
@@ -135,11 +135,11 @@ Cada tarea tiene los siguientes campos:
 | `createdAt` | `LocalDateTime` | Fecha de creación (automática) |
 | `updatedAt` | `LocalDateTime` | Fecha de última modificación (automática) |
 
-> ⚠️ El campo `title` es obligatorio. Si se omite o se envía vacío, la API responde con `400 Bad Request` y un mensaje descriptivo del error.
+>  El campo `title` es obligatorio. Si se omite o se envía vacío, la API responde con `400 Bad Request` y un mensaje descriptivo del error.
 
 ---
 
-## 📋 Requisitos
+##  Requisitos
 
 - **Java 21** o superior
 - **Maven 3.9+**
@@ -158,7 +158,7 @@ mvn -version
 
 ---
 
-## 🔧 Consola H2
+##  Consola H2
 
 En modo desarrollo puedes inspeccionar la base de datos directamente en el navegador:
 
@@ -171,7 +171,7 @@ Clave:    (dejar vacía)
 
 ---
 
-## 🏗️ Estructura del proyecto
+##  Estructura del proyecto
 
 ```
 todo-api/
@@ -204,33 +204,12 @@ todo-api/
 
 ---
 
-## 🤝 Contribuciones
-
-¡Las contribuciones son bienvenidas! Si quieres mejorar Todo API:
-
-1. Haz un **fork** del repositorio
-2. Crea una rama: `git checkout -b feature/nueva-funcionalidad`
-3. Realiza tus cambios y haz commit: `git commit -m "feat: agrega nueva-funcionalidad"`
-4. Sube los cambios: `git push origin feature/nueva-funcionalidad`
-5. Abre un **Pull Request**
-
-### Ideas para contribuir
-
-- [ ] Documentación interactiva con Swagger / OpenAPI
-- [ ] Autenticación con Spring Security + JWT
-- [ ] Migración a PostgreSQL con Docker Compose
-- [ ] Paginación y ordenamiento en listados
-- [ ] Fechas límite (`dueDate`) por tarea
-- [ ] CI/CD con GitHub Actions
-
----
-
-## 📄 Licencia
+##  Licencia
 
 Este proyecto está bajo la licencia **MIT**. Puedes usarlo, modificarlo y distribuirlo libremente.
 
 ---
 
 <div align="center">
-Hecho con ☕ Java y 💚 Spring Boot
+Hecho con ☕ Java y  Spring Boot
 </div>
