@@ -1,215 +1,103 @@
-<div align="center">
+# 📝 Todo API — Spring Boot 3 + Java 21
 
-<img src="https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"/>
-<img src="https://img.shields.io/badge/Spring_Boot-3.2.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
-<img src="https://img.shields.io/badge/Maven-3.9+-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white"/>
-<img src="https://img.shields.io/badge/H2-Database-1316BF?style=for-the-badge&logo=h2&logoColor=white"/>
-<img src="https://img.shields.io/badge/Linux-Compatible-FCC624?style=for-the-badge&logo=linux&logoColor=black"/>
-<img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge"/>
-
-<br/><br/>
-
-```
-████████╗ ██████╗       ██████╗  ██████╗      █████╗ ██████╗ ██╗
-╚══██╔══╝██╔═══██╗      ██╔══██╗██╔═══██╗    ██╔══██╗██╔══██╗██║
-   ██║   ██║   ██║█████╗██║  ██║██║   ██║    ███████║██████╔╝██║
-   ██║   ██║   ██║╚════╝██║  ██║██║   ██║    ██╔══██║██╔═══╝ ██║
-   ██║   ╚██████╔╝      ██████╔╝╚██████╔╝    ██║  ██║██║     ██║
-   ╚═╝    ╚═════╝       ╚═════╝  ╚═════╝     ╚═╝  ╚═╝╚═╝     ╚═╝
-```
-
-###  API REST de Lista de Tareas — Spring Boot 3 + Java 21
-
-</div>
+API REST completa para gestión de tareas (To-Do) con Spring Boot, JPA y base de datos H2 en memoria.
 
 ---
 
-##  Vista previa
+## 🚀 Requisitos
 
-```
-╔══════════════════════════════════════════════════════╗
-║            Todo API — Endpoints disponibles           ║
-╚══════════════════════════════════════════════════════╝
-
-GET    /api/tasks                → Listar todas las tareas
-GET    /api/tasks?completed=true → Filtrar por estado
-GET    /api/tasks?priority=HIGH  → Filtrar por prioridad
-GET    /api/tasks?search=texto   → Buscar por título
-GET    /api/tasks/{id}           → Obtener tarea por ID
-POST   /api/tasks                → Crear nueva tarea
-PUT    /api/tasks/{id}           → Actualizar tarea
-PATCH  /api/tasks/{id}/toggle    → Alternar estado completado
-DELETE /api/tasks/{id}           → Eliminar tarea
-
-Base URL: http://localhost:8080
-```
+- Java 21+
+- Maven 3.9+
 
 ---
 
-##  Características
-
-| Endpoint | Descripción |
-|----------|-------------|
-| `GET /api/tasks` | Lista todas las tareas con sus datos completos |
-| `?completed=true/false` | Filtra tareas por estado de completado |
-| `?priority=HIGH/MEDIUM/LOW` | Filtra tareas por nivel de prioridad |
-| `?search=texto` | Búsqueda de tareas por título (insensible a mayúsculas) |
-| `POST /api/tasks` | Crea una nueva tarea con validaciones automáticas |
-| `PATCH /{id}/toggle` | Alterna el estado completado de una tarea |
-| `DELETE /{id}` | Elimina una tarea, devuelve `404` si no existe |
-
----
-
-##  Instalación
-
-### Opción 1 — Clonar y ejecutar directamente
+## ▶️ Ejecutar el proyecto
 
 ```bash
-git clone https://github.com/tu-usuario/todo-api.git
-cd todo-api
+# Compilar y ejecutar
 mvn spring-boot:run
-```
 
-La API estará disponible en `http://localhost:8080`
+# Ejecutar tests
+mvn test
 
-### Opción 2 — Generar y ejecutar JAR
-
-```bash
-# Compilar y empaquetar
+# Generar JAR ejecutable
 mvn clean package
-
-# Ejecutar el JAR generado
 java -jar target/todo-api-1.0.0.jar
 ```
 
-### Opción 3 — Solo ejecutar los tests
+---
 
-```bash
-mvn test
+## 🌐 Endpoints disponibles
+
+Base URL: `http://localhost:8080/api/tasks`
+
+| Método   | Endpoint                  | Descripción                        |
+|----------|---------------------------|------------------------------------|
+| GET      | `/api/tasks`              | Listar todas las tareas            |
+| GET      | `/api/tasks?completed=true` | Filtrar por estado               |
+| GET      | `/api/tasks?priority=HIGH`  | Filtrar por prioridad            |
+| GET      | `/api/tasks?search=texto`   | Buscar por título                |
+| GET      | `/api/tasks/{id}`         | Obtener tarea por ID               |
+| POST     | `/api/tasks`              | Crear nueva tarea                  |
+| PUT      | `/api/tasks/{id}`         | Actualizar tarea completa          |
+| PATCH    | `/api/tasks/{id}/toggle`  | Marcar/desmarcar como completada   |
+| DELETE   | `/api/tasks/{id}`         | Eliminar tarea                     |
+
+---
+
+## 📦 Ejemplo de request
+
+```json
+POST /api/tasks
+Content-Type: application/json
+
+{
+  "title": "Aprender Spring Boot",
+  "description": "Completar el tutorial oficial",
+  "priority": "HIGH"
+}
+```
+
+Prioridades válidas: `LOW`, `MEDIUM`, `HIGH`
+
+---
+
+## 🔧 Consola H2 (desarrollo)
+
+Disponible en: `http://localhost:8080/h2-console`
+
+- **JDBC URL:** `jdbc:h2:mem:tododb`
+- **Usuario:** `sa`
+- **Contraseña:** *(vacía)*
+
+---
+
+## 🏗️ Estructura del proyecto
+
+```
+src/main/java/com/todoapi/
+├── TodoApiApplication.java       # Punto de entrada
+├── DataLoader.java               # Datos de prueba
+├── controller/
+│   └── TaskController.java       # Endpoints REST
+├── service/
+│   └── TaskService.java          # Lógica de negocio
+├── repository/
+│   └── TaskRepository.java       # Acceso a datos (JPA)
+├── model/
+│   └── Task.java                 # Entidad JPA
+├── dto/
+│   └── TaskDTO.java              # Request/Response DTOs
+└── exception/
+    ├── TaskNotFoundException.java
+    └── GlobalExceptionHandler.java
 ```
 
 ---
 
-##  Ejemplos de uso
+## 📌 Próximos pasos sugeridos
 
-```bash
-# Crear una tarea
-curl -X POST http://localhost:8080/api/tasks \
-  -H "Content-Type: application/json" \
-  -d '{"title": "Aprender Spring Boot", "priority": "HIGH"}'
-
-# Listar todas las tareas
-curl http://localhost:8080/api/tasks
-
-# Filtrar tareas pendientes
-curl "http://localhost:8080/api/tasks?completed=false"
-
-# Buscar por título
-curl "http://localhost:8080/api/tasks?search=spring"
-
-# Marcar como completada
-curl -X PATCH http://localhost:8080/api/tasks/1/toggle
-
-# Actualizar una tarea
-curl -X PUT http://localhost:8080/api/tasks/1 \
-  -H "Content-Type: application/json" \
-  -d '{"title": "Título actualizado", "priority": "LOW"}'
-
-# Eliminar una tarea
-curl -X DELETE http://localhost:8080/api/tasks/1
-```
-
----
-
-##  Estructura del modelo `Task`
-
-Cada tarea tiene los siguientes campos:
-
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| `id` | `Long` | Identificador único (autogenerado) |
-| `title` | `String` | Título obligatorio, máx. 150 caracteres |
-| `description` | `String` | Descripción opcional, máx. 500 caracteres |
-| `completed` | `boolean` | Estado de completado (por defecto `false`) |
-| `priority` | `enum` | Prioridad: `LOW`, `MEDIUM`, `HIGH` |
-| `createdAt` | `LocalDateTime` | Fecha de creación (automática) |
-| `updatedAt` | `LocalDateTime` | Fecha de última modificación (automática) |
-
->  El campo `title` es obligatorio. Si se omite o se envía vacío, la API responde con `400 Bad Request` y un mensaje descriptivo del error.
-
----
-
-##  Requisitos
-
-- **Java 21** o superior
-- **Maven 3.9+**
-- Linux, macOS o WSL
-
-```bash
-# Verificar versión de Java
-java -version
-
-# Instalar Java 21 en Ubuntu/Debian
-sudo apt install openjdk-21-jdk
-
-# Verificar Maven
-mvn -version
-```
-
----
-
-##  Consola H2
-
-En modo desarrollo puedes inspeccionar la base de datos directamente en el navegador:
-
-```
-URL:      http://localhost:8080/h2-console
-JDBC URL: jdbc:h2:mem:tododb
-Usuario:  sa
-Clave:    (dejar vacía)
-```
-
----
-
-##  Estructura del proyecto
-
-```
-todo-api/
-├── pom.xml                                    ← Dependencias Maven
-├── README.md
-└── src/
-    ├── main/
-    │   ├── java/com/todoapi/
-    │   │   ├── TodoApiApplication.java        ← Punto de entrada
-    │   │   ├── DataLoader.java                ← Datos de prueba al iniciar
-    │   │   ├── controller/
-    │   │   │   └── TaskController.java        ← Endpoints REST
-    │   │   ├── service/
-    │   │   │   └── TaskService.java           ← Lógica de negocio
-    │   │   ├── repository/
-    │   │   │   └── TaskRepository.java        ← Acceso a datos (JPA)
-    │   │   ├── model/
-    │   │   │   └── Task.java                  ← Entidad JPA
-    │   │   ├── dto/
-    │   │   │   └── TaskDTO.java               ← Records de Request/Response
-    │   │   └── exception/
-    │   │       ├── TaskNotFoundException.java
-    │   │       └── GlobalExceptionHandler.java
-    │   └── resources/
-    │       └── application.properties
-    └── test/
-        └── java/com/todoapi/
-            └── TaskControllerTest.java        ← Tests de integración
-```
-
----
-
-##  Licencia
-
-Este proyecto está bajo la licencia **MIT**. Puedes usarlo, modificarlo y distribuirlo libremente.
-
----
-
-<div align="center">
-Hecho con ☕ Java y  Spring Boot
-</div>
+- [ ] Agregar Swagger/OpenAPI (`springdoc-openapi`)
+- [ ] Implementar Spring Security + JWT
+- [ ] Migrar a PostgreSQL con Docker Compose
+- [ ] Configurar CI/CD con GitHub Actions
